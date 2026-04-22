@@ -1,5 +1,6 @@
 const fetchPokemonPath = "https://pokeapi.co/api/v2/pokemon?limit=151";
 const pokemonContainer = document.getElementById("pokemonContainer");
+const pokemonObjects = [];
 const typeColors = {
     normal: "bg-gray-400",
     fire: "bg-orange-500",
@@ -35,10 +36,13 @@ async function fetchPokemon() {
         const response = await fetch(pokemon.url);
         const currentPokemon = await response.json();
 
-        const name = currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1);
+    const name =
+      currentPokemon.name.charAt(0).toUpperCase() +
+      currentPokemon.name.slice(1);
 
         // pad the id with leading zeros so it always shows as 3 digits e.g. #001
-        const id = '#' + String(currentPokemon.id).padStart(3, "0");
+    const id = currentPokemon.id;
+    const idString = "#" + String(id).padStart(3, "0");
         const type1 = currentPokemon.types[0].type.name;
 
         // optional chaining (?.) avoids an error if a pokemon only has one type
@@ -58,6 +62,25 @@ async function fetchPokemon() {
             ? `<span class="${type2Color} text-white text-sm font-bold px-4 py-2 rounded-full">${type2}</span>`
             : "";
         
+    // populate pokemonObjects array with pokemon data i object format for later use
+    pokemonObjects.push({
+      id: id,
+      idString: idString,
+      name: name,
+      sprite: sprite,
+      types: [type1, type2].filter(Boolean),
+      type1Color: type1Color,
+      type2Color: type2Color,
+      stats: {
+        hp: hp,
+        attack: attack,
+        defense: defense,
+        specialAttack: specialAttack,
+        specialDefense: specialDefense,
+        speed: speed,
+      },
+    });
+
         // build the full html string first, then write to the DOM once at the end
         html += `
           <article class="bg-white rounded-3xl shadow-lg overflow-hidden">
