@@ -5,6 +5,26 @@ const closeDialogBtn = document.getElementById("closeDialogBtn");
 const dialogContent = document.getElementById("dialogContent");
 const allKantoPokemonPath = "https://pokeapi.co/api/v2/pokemon?limit=151";
 const pokemonContainer = document.getElementById("pokemonContainer");
+const typeColors = {
+    normal: "bg-gray-400",
+    fire: "bg-orange-500",
+    water: "bg-blue-500",
+    electric: "bg-yellow-400",
+    grass: "bg-green-500",
+    ice: "bg-cyan-300",
+    fighting: "bg-red-600",
+    poison: "bg-purple-500",
+    ground: "bg-yellow-600",
+    flying: "bg-indigo-400",
+    psychic: "bg-pink-500",
+    bug: "bg-lime-500",
+    rock: "bg-yellow-700",
+    ghost: "bg-purple-700",
+    dragon: "bg-violet-600",
+    dark: "bg-gray-700",
+    steel: "bg-slate-400",
+    fairy: "bg-pink-300",
+};
 
 async function getAllKantoPokemon() {
     const response = await fetch(allKantoPokemonPath);
@@ -18,9 +38,11 @@ async function getAllKantoPokemon() {
         const pokemonInfo = await pokemonInfoResponse.json();
 
         const name = pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1);
-        const id = '#' + String(pokemonInfo.id).padStart(3, "0");;
+        const id = '#' + String(pokemonInfo.id).padStart(3, "0");
         const type1 = pokemonInfo.types[0].type.name;
         const type2 = pokemonInfo.types[1]?.type.name;
+        const type1Color = typeColors[type1];
+        const type2Color = typeColors[type2];
         const sprite = pokemonInfo.sprites.front_default;
         const hp = pokemonInfo.stats[0].base_stat;
         const attack = pokemonInfo.stats[1].base_stat;
@@ -30,7 +52,7 @@ async function getAllKantoPokemon() {
         const speed = pokemonInfo.stats[5].base_stat;
         
         const type2HTML = type2
-            ? `<span class="bg-yellow-400 text-slate-900 text-sm font-bold px-4 py-2 rounded-full">${type2}</span>`
+            ? `<span class="${type2Color} text-white text-sm font-bold px-4 py-2 rounded-full">${type2}</span>`
             : "";
 
         html += `
@@ -46,7 +68,7 @@ async function getAllKantoPokemon() {
               </div>
 
               <div class="flex gap-3 mb-5">
-                <span class="bg-yellow-400 text-slate-900 text-sm font-bold px-4 py-2 rounded-full">${type1}</span>
+                <span class="${type1Color} text-white text-sm font-bold px-4 py-2 rounded-full">${type1}</span>
                 ${type2HTML}
               </div>
 
