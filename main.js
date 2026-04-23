@@ -259,7 +259,3 @@ closeDialogBtn.addEventListener("click", () => {
 });
 
 fetchPokemon();
-
-
-///////
-localStorage.setItem("caughtPokemon", JSON.stringify(caughtList));
