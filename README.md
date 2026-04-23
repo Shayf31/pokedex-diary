@@ -10,5 +10,5 @@ Functional requirements for the Pokédex exercise.
 | FR010 | Search with Dialog | Add a search bar; on submit (by name **or** numeric ID), show results/feedback in a dialog. | Shay |
 | FR011 | Pokémon Cards | Display each Pokémon's image, name, and stats in a card. | Shay & Jerónimo |
 | FR012 | Catch'em! | "Catch" button stores the Pokémon as an object in an array inside `localStorage`. | Jerónimo |
-| FR013 | Pokédex Page Display | *Pokédex* page lists favourite Pokémon from `localStorage`, showing image, name, stats. | |
-| FR014 | Personal Notes | Allow adding notes to each Pokémon; persist the note on the same object in `localStorage`. | |
+| FR013 | Pokédex Page Display | *Pokédex* page lists favourite Pokémon from `localStorage`, showing image, name, stats. | Jerónimo |
+| FR014 | Personal Notes | Allow adding notes to each Pokémon; persist the note on the same object in `localStorage`. | Shay |
