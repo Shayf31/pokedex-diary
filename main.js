@@ -139,6 +139,9 @@ async function fetchPokemon() {
       if (!alreadyCaught) {
         caughtList.push(pokemonObject);
         localStorage.setItem("caughtPokemon", JSON.stringify(caughtList));
+        alert('You succesfully caught ' + pokemonObject.name + '!')
+      } else {
+        alert('You already caught ' + pokemonObject.name + '!')
       }
     });
   }
